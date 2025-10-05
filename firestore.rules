@@ -1,0 +1,39 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() { return request.auth != null; }
+    function isSastra() {
+      return isSignedIn() && request.auth.token.email.matches('(?i).+@sastra\\.ac\\.in$');
+    }
+
+    // User profiles (user manages own profile)
+    match /users/{uid} {
+      allow read, write: if isSignedIn() && request.auth.uid == uid;
+    }
+
+    // Mapping: loginId -> { email, uid }
+    // - read: public (login page needs this before auth)
+    // - write: only by signed-in @sastra.ac.in (during signup)
+    match /loginLookup/{loginId} {
+      allow read: if true;
+      allow write: if isSastra();
+    }
+
+    // OTP sessions: server-only (Admin SDK bypasses rules)
+    match /passwordOtps/{sessionId} {
+      allow read, write: if false;
+    }
+
+    // Reset tickets after OTP validation: server-only
+    match /resetTickets/{ticketId} {
+      allow read, write: if false;
+    }
+
+    // default deny all else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

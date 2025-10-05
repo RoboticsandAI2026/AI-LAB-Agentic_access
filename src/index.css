@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Sastra Lab Access Management System Design System */
+
+@layer base {
+  :root {
+    /* Sastra Brand Colors - Academic Deep Blue & Orange */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Primary: Sastra Deep Blue */
+    --primary: 220 91% 24%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 220 91% 20%;
+
+    /* Secondary: Light Blue */
+    --secondary: 212 45% 89%;
+    --secondary-foreground: 220 91% 24%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Accent: Sastra Orange */
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --accent-hover: 25 95% 48%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 220 91% 24%;
+
+    --radius: 0.75rem;
+
+    /* Success Colors */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning Colors */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Status Colors for Lab System */
+    --status-available: 142 71% 45%;
+    --status-occupied: 0 84.2% 60.2%;
+    --status-reserved: 25 95% 53%;
+    --status-maintenance: 220 14% 41%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(220 91% 24%), hsl(220 91% 35%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 95% 53%), hsl(35 100% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 91% 24%) 0%, hsl(25 95% 53%) 100%);
+
+    /* Shadows */
+    --shadow-primary: 0 10px 30px -10px hsl(220 91% 24% / 0.3);
+    --shadow-card: 0 4px 20px -2px hsl(220 14% 41% / 0.1);
+
+    /* Sidebar */
+    --sidebar-background: 220 91% 24%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 91% 20%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 91% 20%;
+    --sidebar-ring: 25 95% 53%;
+  }
+
+  .dark {
+    --background: 220 91% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 91% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 91% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Primary: Lighter Blue for dark mode */
+    --primary: 220 91% 35%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 220 91% 40%;
+
+    --secondary: 220 91% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 91% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Accent: Slightly muted orange for dark mode */
+    --accent: 25 85% 55%;
+    --accent-foreground: 0 0% 100%;
+    --accent-hover: 25 85% 50%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 91% 15%;
+    --input: 220 91% 15%;
+    --ring: 220 91% 35%;
+
+    /* Status Colors for dark mode */
+    --status-available: 142 71% 45%;
+    --status-occupied: 0 84.2% 60.2%;
+    --status-reserved: 25 85% 55%;
+    --status-maintenance: 220 14% 41%;
+
+    /* Success/Warning for dark mode */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Sidebar for dark mode */
+    --sidebar-background: 220 91% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 25 85% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 91% 12%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 91% 12%;
+    --sidebar-ring: 25 85% 55%;
+  }
+}
+
+/* Custom Components */
+@layer components {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .shadow-primary {
+    box-shadow: var(--shadow-primary);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .status-available {
+    @apply bg-green-500 text-white;
+  }
+  
+  .status-occupied {
+    @apply bg-destructive text-white;
+  }
+  
+  .status-reserved {
+    @apply bg-accent text-white;
+  }
+  
+  .status-maintenance {
+    @apply bg-gray-500 text-white;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+}
